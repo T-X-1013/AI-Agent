@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: tao-image-search-mcp-server
+  profiles:
+    active: sse
+server:
+  port: 8127
+
+
+

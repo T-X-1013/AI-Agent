@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: tao-ai-agent
+  profiles:
+    active: local
+  ai:
+    dashscope:
+      api-key: sk-87ccbdca10cf472fbce44692db035e63
+      chat:
+        options:
+          model: qwen-plus
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        dimensions: 1536
+        distance-type: COSINE_DISTANCE
+        max-document-batch-size: 10000 # Optional: Maximum number of documents per batch
+    mcp:
+      client:
+#        stdio:
+#          servers-configuration: classpath:mcp-servers.json
+        sse:
+          connections:
+            server1:
+              url: http://localhost:8127
+  datasource:
+    url: jdbc:postgresql://rm-cn-8t849mvqi0002vvo.rwlb.rds.aliyuncs.com:5432/tao_ai_agent
+    username: my_user
+    password: CaysWWF123
+
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+# springdoc-openapi 接口文档配置
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.tao.taoaiagent.controller
+# knife4j的增强配置，不需要增强可以不配
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+# searchAPI
+search-api:
+  api-key: BRQDRpvxcx5JRkhnA8iNy2fd
+
